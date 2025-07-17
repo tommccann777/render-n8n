@@ -9,7 +9,7 @@ services:
       - key: N8N_PORT
         value: 10000
       - key: WEBHOOK_TUNNEL_URL
-        value: https://render-n8n.onrender.com
+        value: https://render-n8n-4znq.onrender.com
       - key: N8N_HOST
         value: 0.0.0.0
       - key: N8N_PROTOCOL
