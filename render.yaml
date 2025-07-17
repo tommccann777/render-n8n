@@ -2,28 +2,65 @@ services:
   - type: web
     name: n8n-nodejs
     env: node
-    plan: free
+    plan: standard  # Free plan doesn't support persistent disks
     buildCommand: npm install
     startCommand: npx n8n
     envVars:
+      # Basic n8n configuration
       - key: N8N_PORT
         value: 10000
-      - key: WEBHOOK_TUNNEL_URL
-        value: https://render-n8n-4znq.onrender.com
       - key: N8N_HOST
         value: 0.0.0.0
       - key: N8N_PROTOCOL
         value: https
+      
+      # Data directory configuration - CRITICAL
+      - key: N8N_USER_FOLDER
+        value: /app/.n8n
+      
+      # Webhook configuration
+      - key: WEBHOOK_TUNNEL_URL
+        value: https://render-n8n-4znq.onrender.com
+      
+      # Authentication
       - key: N8N_BASIC_AUTH_ACTIVE
         value: "true"
       - key: N8N_BASIC_AUTH_USER
         value: tommccann
       - key: N8N_BASIC_AUTH_PASSWORD
         value: Butterfly200
+      
+      # Encryption key for data security - IMPORTANT
+      - key: N8N_ENCRYPTION_KEY
+        value: f55d217e63dd85150a6d5566c12fbbf98c3d47955c5032e509fe6fa62bf7d110
+      
+      # Logging
       - key: N8N_LOG_LEVEL
         value: info
+      
+      # Custom extensions (optional)
       - key: N8N_CUSTOM_EXTENSIONS
         value: /app/.n8n/custom
+      
+      # Database configuration (SQLite on disk)
+      - key: DB_TYPE
+        value: sqlite
+      - key: DB_SQLITE_DATABASE
+        value: /app/.n8n/database.sqlite
+      
+      # Execution data retention
+      - key: EXECUTIONS_DATA_SAVE_ON_ERROR
+        value: all
+      - key: EXECUTIONS_DATA_SAVE_ON_SUCCESS
+        value: all
+      - key: EXECUTIONS_DATA_SAVE_MANUAL_EXECUTIONS
+        value: "true"
+      
+      # Performance settings
+      - key: N8N_PAYLOAD_SIZE_MAX
+        value: "16"
+    
+    # Disk configuration
     disk:
       name: n8n_data
       mountPath: /app/.n8n
