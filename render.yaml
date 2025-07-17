@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: n8n-nodejs
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: N8N_PORT
+        value: 10000
+      - key: WEBHOOK_TUNNEL_URL
+        value: https://render-n8n.onrender.com
+      - key: N8N_HOST
+        value: 0.0.0.0
+      - key: N8N_PROTOCOL
+        value: https
+      - key: N8N_BASIC_AUTH_ACTIVE
+        value: "true"
+      - key: N8N_BASIC_AUTH_USER
+        value: tommccann
+      - key: N8N_BASIC_AUTH_PASSWORD
+        value: Butterfly200
+      - key: N8N_LOG_LEVEL
+        value: info
+      - key: N8N_CUSTOM_EXTENSIONS
+        value: /app/.n8n/custom
+    disk:
+      name: n8n_data
+      mountPath: /app/.n8n
+      sizeGB: 1
