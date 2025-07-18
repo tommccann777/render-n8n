@@ -31,8 +31,8 @@ services:
         value: Butterfly200
       
       # Encryption key for data security - IMPORTANT
-      - key: N8N_ENCRYPTION_KEY
-        value: f55d217e63dd85150a6d5566c12fbbf98c3d47955c5032e509fe6fa62bf7d110
+      #- key: N8N_ENCRYPTION_KEY
+      #  value: false
       
       # Logging
       - key: N8N_LOG_LEVEL
