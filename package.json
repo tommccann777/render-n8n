@@ -11,6 +11,6 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "n8n": "^1.102.3"
+    "n8n": "^1.103.1"
   }
 }
